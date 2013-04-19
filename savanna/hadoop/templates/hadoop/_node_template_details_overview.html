@@ -1,0 +1,35 @@
+{% load i18n sizeformat %}
+
+<h3>{% trans "Node Template Overview" %}</h3>
+
+<div class="status row-fluid detail">
+    <h4>{% trans "Info" %}</h4>
+    <hr class="header_rule">
+    <dl>
+        <dt>{% trans "Name" %}</dt>
+        <dd>{{ node_template.name}}</dd>
+        <dt>{% trans "Type" %}</dt>
+        <dd>{{ node_template.node_type.name }}</dd>
+        <dt>{% trans "ID" %}</dt>
+        <dd>{{ node_template.id }}</dd>
+        <dt>{% trans "Flavor" %}</dt>
+        <dd>{{ node_template.flavor_id }}</dd>
+        <dt>{% trans "Processes" %}</dt>
+        <dd><ul>
+            {% for process in node_template.node_type.processes %}
+                <li>{{ process }}</li>
+            {% endfor %}
+            </ul>
+        </dd>
+
+        {% for process, props in node_template.items %}
+            {% if process in node_template.node_type.processes %}
+                <dt>{{ process }}</dt>
+                {% for key, value in props.items %}
+                    <dd>{{ key }}: {{ value }}</dd>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+    </dl>
+</div>
