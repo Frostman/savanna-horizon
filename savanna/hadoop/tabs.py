@@ -22,7 +22,7 @@ from django.utils import safestring
 from horizon import tabs, tables
 
 from openstack_dashboard.api import glance
-from savanna.api.savanna import get_cluster, get_cluster_nodes, \
+from savanna.api.savanna import get_cluster, get_cluster_nodes,\
     get_node_template
 
 

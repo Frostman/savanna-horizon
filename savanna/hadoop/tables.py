@@ -129,7 +129,7 @@ class ClustersTable(tables.DataTable):
         ("Active", True),
         ("Starting", None),
         ("Stopping", None)
-    )
+        )
 
     name = tables.Column("name",
         link=("horizon:savanna:hadoop:cluster_details"),
@@ -142,9 +142,9 @@ class ClustersTable(tables.DataTable):
         verbose_name=_("Base Image"))
 
     status = tables.Column("status",
-                           verbose_name=_("Status"),
-                           status=False,
-                           status_choices=STATUS_CHOICES)
+        verbose_name=_("Status"),
+        status=False,
+        status_choices=STATUS_CHOICES)
 
     nodes_count = tables.Column("nodes_count",
         verbose_name=_("Nodes Count"))

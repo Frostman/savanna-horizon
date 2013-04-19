@@ -85,7 +85,7 @@ def list_clusters(request):
             status = cl["status"]
             nodes = cl["nodes"]
             cluster = Cluster(id, name, _format_templates(node_templates),
-                              base_image_name, status, len(nodes))
+                base_image_name, status, len(nodes))
             clusters.append(cluster)
         return clusters
     else:
@@ -155,11 +155,11 @@ def create_node_template(request, name, node_type, flavor_id,
         template_data["data_node"] = data_node_opts
     resp = requests.post(get_savanna_address(request)
                          + "/node-templates",
-                         json.dumps(post_data),
-                         headers={
-                             "x-auth-token": token,
-                             "Content-Type": "application/json"
-                         })
+        json.dumps(post_data),
+        headers={
+            "x-auth-token": token,
+            "Content-Type": "application/json"
+        })
 
     return resp.status_code == 202
 
@@ -217,7 +217,7 @@ def get_cluster_nodes(request, cluster_id):
 
         nodes_with_id.append(ClusterNode(vm.id, "%s (%s)" % (vm.name, ", ".join(
             [elem['addr'].__str__() for elem in addresses])),
-                                         node["node_template"]["name"],
-                                         node["node_template"]["id"]))
+            node["node_template"]["name"],
+            node["node_template"]["id"]))
 
     return nodes_with_id

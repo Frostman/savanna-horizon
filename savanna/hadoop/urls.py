@@ -17,15 +17,14 @@
 
 from django.conf.urls.defaults import patterns, url
 
-from .views import IndexView, EditClusterView, ClusterDetailView, \
-    EditTemplateView, CreateClusterView, CreateNodeTemplateView, \
+from .views import IndexView, EditClusterView, ClusterDetailView,\
+    EditTemplateView, CreateClusterView, CreateNodeTemplateView,\
     NodeTemplateDetailView
 
 
 CLUSTERS = r'^(?P<instance_id>[^/]+)/%s$'
 TEMPLATES = r'^templates/(?P<template_id>[^/]+)/%s$'
 VIEW_MOD = 'savanna.hadoop.views'
-
 
 urlpatterns = patterns(VIEW_MOD,
     url(r'^$', IndexView.as_view(), name='index'),

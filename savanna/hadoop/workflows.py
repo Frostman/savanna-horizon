@@ -26,9 +26,8 @@ from horizon import exceptions
 from horizon import forms
 from horizon import workflows
 
-from openstack_dashboard import api
-from openstack_dashboard.api import glance
-from savanna.api.savanna import list_templates, create_cluster, \
+from openstack_dashboard.api import glance, nova
+from savanna.api.savanna import list_templates, create_cluster,\
     create_node_template
 
 LOG = logging.getLogger(__name__)
@@ -78,12 +77,12 @@ class GeneralConfigurationAction(workflows.Action):
 
         self.templates = templates
         self.template_infos = {}
-        flavors = api.nova.flavor_list(request)
+        flavors = nova.flavor_list(request)
         for template in templates:
             flavor_name = template.flavor_name
             flavor = filter(lambda fl: fl.name == flavor_name, flavors)[0]
-            self.template_infos[template.name] = \
-                "%s vcpu, %s Mb RAM, %s Gb disk" % (
+            self.template_infos[template.name] =\
+            "%s vcpu, %s Mb RAM, %s Gb disk" % (
                 flavor.vcpus, flavor.ram, flavor.disk)
 
     name = forms.CharField(
@@ -98,7 +97,7 @@ class GeneralConfigurationAction(workflows.Action):
         label=_("Hadoop cluster topology"),
         required=True,
         choices=[("Single-node master", "Single-node master")]
-                 #("Multi-node master", "Multi-node master")]
+        #("Multi-node master", "Multi-node master")]
     )
 
     jt_nn_template_choices = forms.ChoiceField(
@@ -239,10 +238,10 @@ class SetNameFlavorTypeAction(workflows.Action):
 
     TT_REQUIRED_OPTS = (("heap_size", "heap_size"),)
     TT_OPT_CHOICES = (("mapred.child.java.opts", "mapred.child.java.opts"),
-			("mapred.tasktracker.map.tasks.maximum",
-			 "mapred.tasktracker.map.tasks.maximum"),
-			("mapred.tasktracker.reduce.tasks.maximum",
-			 "mapred.tasktracker.reduce.tasks.maximum"))
+                      ("mapred.tasktracker.map.tasks.maximum",
+                       "mapred.tasktracker.map.tasks.maximum"),
+                      ("mapred.tasktracker.reduce.tasks.maximum",
+                       "mapred.tasktracker.reduce.tasks.maximum"))
 
     tt_opts = forms.ChoiceField(
         required=False,

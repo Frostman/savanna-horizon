@@ -49,7 +49,7 @@ class IndexView(tables.MultiTableView):
         except:
             node_templates = []
             exceptions.handle(self.request,
-                              _('Unable to retrieve node_templates.'))
+                _('Unable to retrieve node_templates.'))
         return node_templates
 
     def get_clusters_data(self):
@@ -139,5 +139,5 @@ class NodeTemplateDetailView(tabs.TabView):
 
     def get_context_data(self, **kwargs):
         context = super(NodeTemplateDetailView, self)\
-            .get_context_data(**kwargs)
+        .get_context_data(**kwargs)
         return context

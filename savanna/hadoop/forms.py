@@ -20,7 +20,6 @@ import logging
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from openstack_dashboard import api
 
 from horizon import exceptions
 from horizon import forms
@@ -31,12 +30,10 @@ LOG = logging.getLogger(__name__)
 
 
 class UpdateInstance(forms.SelfHandlingForm):
-
     def handle(self, request, data):
         pass
 
 
 class UpdateTemplate(forms.SelfHandlingForm):
-
     def handle(self, request, data):
         pass
