@@ -29,7 +29,6 @@ from horizon import tabs
 from horizon import tables
 from horizon import workflows
 
-from openstack_dashboard import api
 from .forms import UpdateInstance, UpdateTemplate
 from savanna.api.savanna import list_templates, list_clusters
 from .tables import NodeTemplatesTable, ClustersTable
